@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Keyxote</string>
-    <string name="action_settings">Settings</string>
+
+    <!-- Labels for subtype -->
+    <string name="label_subtype_generic">%s</string>
 </resources>
