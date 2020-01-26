@@ -1,0 +1,3 @@
+*.java  text
+*.xml   text
+gradlew text eol=lf
