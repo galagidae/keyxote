@@ -79,7 +79,7 @@ public class KeyboardView extends LinearLayout {
                 if (mScrollOffset == 0) {
                     mScrollOffset = mKeyView.getBottom() - mKeyView.getTop();
                 }
-                mRowScrollView.smoothScrollTo(0, mScrollOffset);
+                mRowScrollView.smoothScrollBy(0, mScrollOffset);
             }
         });
 
