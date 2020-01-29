@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 
 public class Key extends Button {
+    private int mKeyCode;
+    private String mNormalLabel;
+    private String mShiftLabel;
+    private String mCurrentLabel;
     private static ColorStateList keyColors = new ColorStateList(
             new int[][]{
                     new int[]{android.R.attr.state_pressed},
@@ -24,8 +28,10 @@ public class Key extends Button {
         super(context, attrs);
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.Key);
-        int code = ta.getInt(R.styleable.Key_keyCode, 113);
-        super.setText(Character.toString((char)code));
+        mKeyCode = ta.getInt(R.styleable.Key_keyCode, 113);
+        mCurrentLabel = mNormalLabel = Character.toString((char)mKeyCode);
+        mShiftLabel = Character.toString((char)(mKeyCode - 32));
+        super.setText(mCurrentLabel);
 
         super.setTextSize(98);
         super.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
@@ -33,5 +39,18 @@ public class Key extends Button {
 
         super.setBackgroundTintList(keyColors);
         super.setTextColor(Color.WHITE);
+    }
+
+    public void Shift (boolean shift) {
+        if (shift) {
+            mCurrentLabel = mShiftLabel;
+        } else {
+            mCurrentLabel = mNormalLabel;
+        }
+        this.setText(mCurrentLabel);
+    }
+
+    public String GetCurrentLabel() {
+        return mCurrentLabel;
     }
 }
