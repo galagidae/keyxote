@@ -13,6 +13,9 @@ public class KeyboardView extends LinearLayout {
             if (view instanceof Key) {
                 Key k = (Key)view;
                 mKeyboardLIstener.OnKey(k.GetCurrentLabel());
+                if (mShifted) {
+                    ToggleShift();
+                }
             }
         }
     };
@@ -23,8 +26,9 @@ public class KeyboardView extends LinearLayout {
 
     private KeyboardListener mKeyboardLIstener;
     private Button mButton;
-    private Button ma;
+    private Button mShiftKey;
     private LinearLayout mKeyView;
+    private boolean mShifted = false;
     public KeyboardView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -40,8 +44,6 @@ public class KeyboardView extends LinearLayout {
             }
         }
 
-        //ma = findViewById(R.id.lowera);
-        //ma.setOnClickListener(mOnClick);
         mButton = findViewById(R.id.switchBoard);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,5 +51,24 @@ public class KeyboardView extends LinearLayout {
                 mKeyboardLIstener.onSwitchBoard();
             }
         });
+
+        mShiftKey = findViewById(R.id.shift);
+        mShiftKey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToggleShift();
+            }
+        });
     }
+
+    private void ToggleShift() {
+        mShifted = !mShifted;
+        for (int c = 0; c < mKeyView.getChildCount(); c++) {
+            View v = mKeyView.getChildAt(c);
+            if (v instanceof Key) {
+                ((Key)v).Shift(mShifted);
+            }
+        }
+    }
+
 }

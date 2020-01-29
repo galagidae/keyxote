@@ -19,7 +19,6 @@
             android:id="@+id/keyview"
             android:orientation="horizontal">
             <com.galagidae.keyxote.Key
-                android:id="@+id/lowera"
                 android:layout_width="@dimen/key_size"
                 android:layout_height="@dimen/key_size"
                 app:keyCode="113" />
@@ -51,4 +50,10 @@
         android:backgroundTint="@android:color/black"
         android:layout_height="match_parent"
         android:text="Switch"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/shift"
+        android:text="Shift" />
+
 </com.galagidae.keyxote.KeyboardView>
