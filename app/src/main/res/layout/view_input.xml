@@ -10,40 +10,61 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/colorPrimaryDark">
-    <HorizontalScrollView
+
+    <com.galagidae.keyxote.RowScrollView
+        android:id="@+id/row_scroll"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
-        <LinearLayout
+        android:layout_height="@dimen/key_size">
+
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/keyview"
-            android:orientation="horizontal">
-            <com.galagidae.keyxote.Key
-                android:layout_width="@dimen/key_size"
-                android:layout_height="@dimen/key_size"
-                app:keyCode="113" />
-            <com.galagidae.keyxote.Key
-                android:layout_height="@dimen/key_size"
-                android:layout_width="@dimen/key_size"
-                app:keyCode="119" />
-            <com.galagidae.keyxote.Key
-                android:layout_height="@dimen/key_size"
-                android:layout_width="@dimen/key_size"
-                app:keyCode="101" />
-            <com.galagidae.keyxote.Key
-                android:layout_height="@dimen/key_size"
-                android:layout_width="@dimen/key_size"
-                app:keyCode="114" />
-            <com.galagidae.keyxote.Key
-                android:layout_height="@dimen/key_size"
-                android:layout_width="@dimen/key_size"
-                app:keyCode="116" />
-            <com.galagidae.keyxote.Key
-                android:layout_height="@dimen/key_size"
-                android:layout_width="@dimen/key_size"
-                app:keyCode="121" />
-        </LinearLayout>
-    </HorizontalScrollView>
+            android:layout_height="200dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/keyview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <com.galagidae.keyxote.Key
+                        android:layout_width="@dimen/key_size"
+                        android:layout_height="@dimen/key_size"
+                        app:keyCode="113" />
+
+                    <com.galagidae.keyxote.Key
+                        android:layout_width="@dimen/key_size"
+                        android:layout_height="@dimen/key_size"
+                        app:keyCode="119" />
+
+                    <com.galagidae.keyxote.Key
+                        android:layout_width="@dimen/key_size"
+                        android:layout_height="@dimen/key_size"
+                        app:keyCode="101" />
+
+                    <com.galagidae.keyxote.Key
+                        android:layout_width="@dimen/key_size"
+                        android:layout_height="@dimen/key_size"
+                        app:keyCode="114" />
+
+                    <com.galagidae.keyxote.Key
+                        android:layout_width="@dimen/key_size"
+                        android:layout_height="@dimen/key_size"
+                        app:keyCode="116" />
+
+                    <com.galagidae.keyxote.Key
+                        android:layout_width="@dimen/key_size"
+                        android:layout_height="@dimen/key_size"
+                        app:keyCode="121" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </com.galagidae.keyxote.RowScrollView>
     <Button
         android:id="@+id/switchBoard"
         android:layout_width="100dp"
