@@ -30,7 +30,9 @@ public class KeyboardView extends LinearLayout {
     private Button mShiftKey;
     private Button mRowUp;
     private Button mRowDown;
-    private LinearLayout mKeyView;
+    private LinearLayout mRowOne;
+    private LinearLayout mRowTwo;
+    private LinearLayout mRowThree;
     private boolean mShifted = false;
     private RowScrollView mRowScrollView;
     private int mScrollOffset;
@@ -41,13 +43,12 @@ public class KeyboardView extends LinearLayout {
     public void DoStuff(KeyboardListener listener) {
         mKeyboardLIstener = listener;
 
-        mKeyView = findViewById(R.id.keyview);
-        for (int c = 0; c < mKeyView.getChildCount(); c++) {
-            View v = mKeyView.getChildAt(c);
-            if (v instanceof Key) {
-                v.setOnClickListener(mOnClick);
-            }
-        }
+        mRowOne = findViewById(R.id.row_one);
+        mRowTwo = findViewById(R.id.row_two);
+        mRowThree = findViewById(R.id.row_three);
+        setListeners (mRowOne);
+        setListeners (mRowTwo);
+        setListeners (mRowThree);
 
         mButton = findViewById(R.id.switchBoard);
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +78,7 @@ public class KeyboardView extends LinearLayout {
             @Override
             public void onClick(View view) {
                 if (mScrollOffset == 0) {
-                    mScrollOffset = mKeyView.getBottom() - mKeyView.getTop();
+                    mScrollOffset = mRowOne.getBottom() - mRowOne.getTop();
                 }
                 mRowScrollView.smoothScrollBy(0, mScrollOffset);
             }
@@ -87,12 +88,26 @@ public class KeyboardView extends LinearLayout {
 
     private void ToggleShift() {
         mShifted = !mShifted;
-        for (int c = 0; c < mKeyView.getChildCount(); c++) {
-            View v = mKeyView.getChildAt(c);
+        ShiftKeys(mRowOne);
+        ShiftKeys(mRowTwo);
+        ShiftKeys(mRowThree);
+    }
+
+    private void ShiftKeys (LinearLayout layout) {
+        for (int c = 0; c < layout.getChildCount(); c++) {
+            View v = layout.getChildAt(c);
             if (v instanceof Key) {
                 ((Key)v).Shift(mShifted);
             }
         }
     }
 
+    private void setListeners (LinearLayout layout){
+        for (int c = 0; c < layout.getChildCount(); c++) {
+            View v = layout.getChildAt(c);
+            if (v instanceof Key) {
+                v.setOnClickListener(mOnClick);
+            }
+        }
+    }
 }
