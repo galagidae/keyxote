@@ -28,10 +28,11 @@
                 <LinearLayout
                     android:id="@+id/keyview"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/key_size"
                     android:orientation="horizontal">
 
                     <com.galagidae.keyxote.Key
+                        android:id="@+id/id_q"
                         android:layout_width="@dimen/key_size"
                         android:layout_height="@dimen/key_size"
                         app:keyCode="113" />
@@ -61,7 +62,29 @@
                         android:layout_height="@dimen/key_size"
                         app:keyCode="121" />
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
+                    <com.galagidae.keyxote.Key
+                        android:layout_width="@dimen/key_size"
+                        android:layout_height="@dimen/key_size"
+                        android:width="@dimen/key_size"
+                        app:keyCode="97" />
+                    <com.galagidae.keyxote.Key
+                        android:layout_width="@dimen/key_size"
+                        android:layout_height="@dimen/key_size"
+                        app:keyCode="115" />
+                    <com.galagidae.keyxote.Key
+                        android:layout_width="@dimen/key_size"
+                        android:layout_height="@dimen/key_size"
+                        app:keyCode="100" />
+                    <com.galagidae.keyxote.Key
+                        android:layout_width="@dimen/key_size"
+                        android:layout_height="@dimen/key_size"
+                        app:keyCode="112" />
+                </LinearLayout>
             </LinearLayout>
         </HorizontalScrollView>
     </com.galagidae.keyxote.RowScrollView>
@@ -71,6 +94,23 @@
         android:backgroundTint="@android:color/black"
         android:layout_height="match_parent"
         android:text="Switch"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/key_size"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/row_up"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="Up" />
+
+        <Button
+            android:id="@+id/row_down"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="Down" />
+    </LinearLayout>
     <Button
         android:layout_width="150dp"
         android:layout_height="150dp"

@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.view.View;
 
 public class KeyboardView extends LinearLayout {
+
     private View.OnClickListener mOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -27,8 +28,12 @@ public class KeyboardView extends LinearLayout {
     private KeyboardListener mKeyboardLIstener;
     private Button mButton;
     private Button mShiftKey;
+    private Button mRowUp;
+    private Button mRowDown;
     private LinearLayout mKeyView;
     private boolean mShifted = false;
+    private RowScrollView mRowScrollView;
+    private int mScrollOffset;
     public KeyboardView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -59,6 +64,25 @@ public class KeyboardView extends LinearLayout {
                 ToggleShift();
             }
         });
+        mRowScrollView = findViewById(R.id.row_scroll);
+        mRowUp = findViewById(R.id.row_up);
+        mRowUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mRowScrollView.smoothScrollBy(0, 0 - mScrollOffset);
+            }
+        });
+        mRowDown = findViewById(R.id.row_down);
+        mRowDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mScrollOffset == 0) {
+                    mScrollOffset = mKeyView.getBottom() - mKeyView.getTop();
+                }
+                mRowScrollView.smoothScrollTo(0, mScrollOffset);
+            }
+        });
+
     }
 
     private void ToggleShift() {

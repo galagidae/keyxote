@@ -15,7 +15,6 @@ public class RowScrollView extends ScrollView {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_UP:
-                // if we can scroll pass the event to the superclass
                 return false;
             default:
                 return super.onTouchEvent(ev);
