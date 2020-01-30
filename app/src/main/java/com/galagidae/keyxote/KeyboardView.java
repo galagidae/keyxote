@@ -33,6 +33,7 @@ public class KeyboardView extends LinearLayout {
     private LinearLayout mRowOne;
     private LinearLayout mRowTwo;
     private LinearLayout mRowThree;
+    private LinearLayout mRowUtil;
     private boolean mShifted = false;
     private RowScrollView mRowScrollView;
     private int mScrollOffset;
@@ -46,9 +47,11 @@ public class KeyboardView extends LinearLayout {
         mRowOne = findViewById(R.id.row_one);
         mRowTwo = findViewById(R.id.row_two);
         mRowThree = findViewById(R.id.row_three);
+        mRowUtil = findViewById(R.id.row_util);
         setListeners (mRowOne);
         setListeners (mRowTwo);
         setListeners (mRowThree);
+        setListeners (mRowUtil);
 
         mButton = findViewById(R.id.switchBoard);
         mButton.setOnClickListener(new View.OnClickListener() {

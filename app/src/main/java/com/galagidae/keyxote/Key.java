@@ -10,47 +10,44 @@ import android.view.View;
 import android.widget.Button;
 
 public class Key extends Button {
-    private int mKeyCode;
-    private String mNormalLabel;
+
+    // New fields
+    private String mBaseChar;
+    private String mBaseLabel;
+    private String mShiftChar;
     private String mShiftLabel;
-    private String mCurrentLabel;
-    private static ColorStateList keyColors = new ColorStateList(
-            new int[][]{
-                    new int[]{android.R.attr.state_pressed},
-                    new int[]{}
-            },
-            new int[] {
-                    Color.BLUE,
-                    Color.BLACK
-            }
-    );
+    private boolean mShifted = false;
+
     public Key(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.Key);
-        mKeyCode = ta.getInt(R.styleable.Key_keyCode, 113);
-        mCurrentLabel = mNormalLabel = Character.toString((char)mKeyCode);
-        mShiftLabel = Character.toString((char)(mKeyCode - 32));
-        super.setText(mCurrentLabel);
 
-        super.setTextSize(98);
-        super.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
-        super.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
+        mBaseChar = ta.getString(R.styleable.Key_baseChar);
+        mBaseLabel = ta.getString(R.styleable.Key_baseLabel);
+        if (mBaseLabel == null)
+            mBaseLabel = mBaseChar;
+        mShiftChar = ta.getString(R.styleable.Key_shiftChar);
+        if (mShiftChar == null)
+            mShiftChar = mBaseChar;
+        mShiftLabel = ta.getString(R.styleable.Key_shiftLabel);
+        if (mShiftLabel == null)
+            mShiftLabel = mShiftChar;
 
-        super.setBackgroundTintList(keyColors);
-        super.setTextColor(Color.WHITE);
+        super.setText(mBaseLabel);
+
+        //super.setTextSize(98);
+        //super.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
+        //super.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
     }
 
     public void Shift (boolean shift) {
-        if (shift) {
-            mCurrentLabel = mShiftLabel;
-        } else {
-            mCurrentLabel = mNormalLabel;
-        }
-        this.setText(mCurrentLabel);
+
+        mShifted = shift;
+        this.setText(mShifted? mShiftLabel : mBaseLabel);
     }
 
     public String GetCurrentLabel() {
-        return mCurrentLabel;
+        return mShifted? mShiftChar : mBaseChar;
     }
 }

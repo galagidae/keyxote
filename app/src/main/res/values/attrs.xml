@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="Key">
-        <attr name="keyCode" format="integer" />
+        <attr name="baseChar" format="string" />
+        <attr name="shiftChar" format="string" />
+        <attr name="baseLabel" format="string" />
+        <attr name="shiftLabel" format="string" />
     </declare-styleable>
-</resources>
+ </resources>
