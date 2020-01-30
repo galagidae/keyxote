@@ -223,17 +223,25 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/func_key_size"
         android:orientation="horizontal">
-
-        <com.galagidae.keyxote.Key
-            android:layout_width="200dp"
+        <Button
+            android:layout_width="0dp"
             android:layout_height="@dimen/func_key_size"
+            android:layout_weight="0.25"
+            android:id="@+id/shift"
             android:textSize="14dp"
+            android:text="Shift" />
+        <com.galagidae.keyxote.Key
+            android:layout_width="0dp"
+            android:layout_height="@dimen/func_key_size"
+            android:layout_weight="0.5"
+            android:textSize="@dimen/func_key_textSize"
             app:baseChar=" "
             app:baseLabel="space" />
         <com.galagidae.keyxote.Key
-            android:layout_width="@dimen/key_size"
+            android:layout_width="0dp"
             android:layout_height="@dimen/func_key_size"
-            android:textSize="14dp"
+            android:layout_weight="0.25"
+            android:textSize="@dimen/func_key_textSize"
             app:baseChar="@string/backspace"
             app:baseLabel="Del" />
     </LinearLayout>
@@ -245,27 +253,22 @@
             android:id="@+id/switchBoard"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:textSize="14dp"
+            android:textSize="@dimen/func_key_textSize"
             android:text="Switch"/>
         <Button
             android:id="@+id/row_up"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:textSize="14dp"
+            android:textSize="@dimen/func_key_textSize"
             android:text="Up" />
 
         <Button
             android:id="@+id/row_down"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:textSize="14dp"
+            android:textSize="@dimen/func_key_textSize"
             android:text="Down" />
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:id="@+id/shift"
-            android:textSize="14dp"
-            android:text="Shift" />
+
     </LinearLayout>
 
 
