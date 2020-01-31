@@ -32,6 +32,7 @@ public class KeyboardView extends LinearLayout {
     private LinearLayout mRowOne;
     private LinearLayout mRowTwo;
     private LinearLayout mRowThree;
+    private LinearLayout mRowFour;
     private LinearLayout mRowUtil;
     private boolean mShifted = false;
     private RowScrollView mRowScrollView;
@@ -47,10 +48,12 @@ public class KeyboardView extends LinearLayout {
         mRowOne = findViewById(R.id.row_one);
         mRowTwo = findViewById(R.id.row_two);
         mRowThree = findViewById(R.id.row_three);
+        mRowFour = findViewById(R.id.row_four);
         mRowUtil = findViewById(R.id.row_util);
         setListeners (mRowOne);
         setListeners (mRowTwo);
         setListeners (mRowThree);
+        setListeners (mRowFour);
         setListeners (mRowUtil);
 
         mButton = findViewById(R.id.switchBoard);
@@ -77,6 +80,7 @@ public class KeyboardView extends LinearLayout {
         ShiftKeys(mRowOne);
         ShiftKeys(mRowTwo);
         ShiftKeys(mRowThree);
+        ShiftKeys(mRowFour);
     }
 
     private void ShiftKeys (LinearLayout layout) {
