@@ -29,8 +29,6 @@ public class KeyboardView extends LinearLayout {
     private KeyboardListener mKeyboardLIstener;
     private Button mButton;
     private Button mShiftKey;
-    private Button mRowUp;
-    private Button mRowDown;
     private LinearLayout mRowOne;
     private LinearLayout mRowTwo;
     private LinearLayout mRowThree;
@@ -72,24 +70,6 @@ public class KeyboardView extends LinearLayout {
         });
         mRowScrollView = findViewById(R.id.row_scroll);
         mKeyScrollView = findViewById(R.id.key_scroll);
-        mRowUp = findViewById(R.id.row_up);
-        mRowUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mRowScrollView.smoothScrollBy(0, 0 - mScrollOffset);
-            }
-        });
-        mRowDown = findViewById(R.id.row_down);
-        mRowDown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mScrollOffset == 0) {
-                    mScrollOffset = mRowOne.getBottom() - mRowOne.getTop();
-                }
-                mRowScrollView.smoothScrollBy(0, mScrollOffset);
-            }
-        });
-
     }
 
     private void ToggleShift() {

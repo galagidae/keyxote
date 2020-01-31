@@ -13,16 +13,16 @@ public class RowScrollView extends ScrollView {
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-            case MotionEvent.ACTION_UP:
-                return false;
+            //case MotionEvent.ACTION_DOWN:
+            //case MotionEvent.ACTION_UP:
+                //return false;
             default:
                 return super.onTouchEvent(ev);
         }
     }
 
-    @Override
+    /*@Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         return  false;
-    }
+    }*/
 }
