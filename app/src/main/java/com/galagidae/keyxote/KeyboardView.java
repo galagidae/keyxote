@@ -3,6 +3,7 @@ package com.galagidae.keyxote;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.view.View;
 
@@ -36,6 +37,7 @@ public class KeyboardView extends LinearLayout {
     private LinearLayout mRowUtil;
     private boolean mShifted = false;
     private RowScrollView mRowScrollView;
+    private HorizontalScrollView mKeyScrollView;
     private int mScrollOffset;
     public KeyboardView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -69,6 +71,7 @@ public class KeyboardView extends LinearLayout {
             }
         });
         mRowScrollView = findViewById(R.id.row_scroll);
+        mKeyScrollView = findViewById(R.id.key_scroll);
         mRowUp = findViewById(R.id.row_up);
         mRowUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,5 +115,10 @@ public class KeyboardView extends LinearLayout {
                 v.setOnClickListener(mOnClick);
             }
         }
+    }
+
+    public void ResetView() {
+        mRowScrollView.scrollTo(0, 0);
+        mKeyScrollView.scrollTo(0, 0);
     }
 }

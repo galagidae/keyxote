@@ -1,7 +1,7 @@
 package com.galagidae.keyxote;
 
 import android.inputmethodservice.InputMethodService;
-import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.view.KeyEvent;
 import android.view.View;
@@ -10,7 +10,6 @@ public class KeyboardService extends InputMethodService
             implements KeyboardView.KeyboardListener{
     private KeyboardView mKeyboardView;
     private InputMethodManager mInputManager;
-    private InputConnection mConnection;
 
     @Override
     public void onCreate () {
@@ -26,20 +25,25 @@ public class KeyboardService extends InputMethodService
         return mKeyboardView;
     }
 
+    @Override
+    public void onStartInput(EditorInfo attribute, boolean restarting) {
+        super.onStartInput(attribute, restarting);
+
+        if (mKeyboardView != null)
+            mKeyboardView.ResetView();
+    }
+
     public void onSwitchBoard() {
         this.switchToNextInputMethod(false);
     }
 
     public void OnKey(String key) {
-        if (mConnection == null) {
-            mConnection = getCurrentInputConnection();
-        }
         if (key == getString(R.string.backspace)) {
-            mConnection.sendKeyEvent(
+            getCurrentInputConnection().sendKeyEvent(
                     new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
-            mConnection.sendKeyEvent(
+            getCurrentInputConnection().sendKeyEvent(
                     new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL));
         } else
-            mConnection.commitText(key, 0);
+            getCurrentInputConnection().commitText(key, 0);
     }
 }
