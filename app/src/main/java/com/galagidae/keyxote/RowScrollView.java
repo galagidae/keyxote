@@ -12,13 +12,15 @@ public class RowScrollView extends ScrollView {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        switch (ev.getAction()) {
-            //case MotionEvent.ACTION_DOWN:
-            //case MotionEvent.ACTION_UP:
-                //return false;
+        return super.onTouchEvent(ev);
+        // Disabling all this until I can come up with a better scorlling approach
+        /*switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_UP:
+                return false;
             default:
                 return super.onTouchEvent(ev);
-        }
+        }*/
     }
 
     /*@Override

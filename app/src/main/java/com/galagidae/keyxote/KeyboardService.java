@@ -8,20 +8,14 @@ import android.view.View;
 
 public class KeyboardService extends InputMethodService
             implements KeyboardView.KeyboardListener{
-    private KeyboardView mKeyboardView;
-    private InputMethodManager mInputManager;
 
-    @Override
-    public void onCreate () {
-        super.onCreate();
-        mInputManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-    }
+    private KeyboardView mKeyboardView;
 
     @Override
     public View onCreateInputView() {
         mKeyboardView = (KeyboardView) getLayoutInflater().inflate(
                 R.layout.view_input, null);
-        mKeyboardView.DoStuff(this);
+        mKeyboardView.Initialize(this);
         return mKeyboardView;
     }
 
@@ -29,6 +23,7 @@ public class KeyboardService extends InputMethodService
     public void onStartInput(EditorInfo attribute, boolean restarting) {
         super.onStartInput(attribute, restarting);
 
+        // Scroll the keyboard back to top/left
         if (mKeyboardView != null)
             mKeyboardView.ResetView();
     }

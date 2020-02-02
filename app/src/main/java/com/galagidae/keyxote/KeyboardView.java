@@ -14,7 +14,7 @@ public class KeyboardView extends LinearLayout {
         public void onClick(View view) {
             if (view instanceof Key) {
                 Key k = (Key)view;
-                mKeyboardLIstener.OnKey(k.GetCurrentLabel());
+                mKeyboardLIstener.OnKey(k.GetCurrentChar());
                 if (mShifted) {
                     ToggleShift();
                 }
@@ -27,7 +27,7 @@ public class KeyboardView extends LinearLayout {
     }
 
     private KeyboardListener mKeyboardLIstener;
-    private Button mButton;
+    private Button mSwitch;
     private Button mShiftKey;
     private LinearLayout mRowOne;
     private LinearLayout mRowTwo;
@@ -37,12 +37,11 @@ public class KeyboardView extends LinearLayout {
     private boolean mShifted = false;
     private RowScrollView mRowScrollView;
     private HorizontalScrollView mKeyScrollView;
-    private int mScrollOffset;
     public KeyboardView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public void DoStuff(KeyboardListener listener) {
+    public void Initialize(KeyboardListener listener) {
         mKeyboardLIstener = listener;
 
         mRowOne = findViewById(R.id.row_one);
@@ -56,8 +55,8 @@ public class KeyboardView extends LinearLayout {
         setListeners (mRowFour);
         setListeners (mRowUtil);
 
-        mButton = findViewById(R.id.switchBoard);
-        mButton.setOnClickListener(new View.OnClickListener() {
+        mSwitch = findViewById(R.id.switchBoard);
+        mSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mKeyboardLIstener.onSwitchBoard();
@@ -84,6 +83,7 @@ public class KeyboardView extends LinearLayout {
     }
 
     private void ShiftKeys (LinearLayout layout) {
+        // This is dum. Should add a more event-driven mechanism
         for (int c = 0; c < layout.getChildCount(); c++) {
             View v = layout.getChildAt(c);
             if (v instanceof Key) {
@@ -93,6 +93,7 @@ public class KeyboardView extends LinearLayout {
     }
 
     private void setListeners (LinearLayout layout){
+        // This is dumb. Need to find a better way of wiring up keys
         for (int c = 0; c < layout.getChildCount(); c++) {
             View v = layout.getChildAt(c);
             if (v instanceof Key) {
