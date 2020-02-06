@@ -9,14 +9,18 @@ import android.view.View;
 
 public class KeyboardView extends LinearLayout {
 
+    private enum Casing {
+        NORMAL, SHIFT, CAPS
+    }
+
     private View.OnClickListener mOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             if (view instanceof Key) {
                 Key k = (Key)view;
                 mKeyboardLIstener.OnKey(k.GetCurrentChar());
-                if (mShifted) {
-                    ToggleShift();
+                if (mCaseState == Casing.SHIFT) {
+                    SetCasing(Casing.NORMAL);
                 }
             }
         }
@@ -34,7 +38,7 @@ public class KeyboardView extends LinearLayout {
     private LinearLayout mRowThree;
     private LinearLayout mRowFour;
     private LinearLayout mRowUtil;
-    private boolean mShifted = false;
+    private Casing mCaseState = Casing.NORMAL;
     private RowScrollView mRowScrollView;
     private HorizontalScrollView mKeyScrollView;
     public KeyboardView(Context context, AttributeSet attrs) {
@@ -67,27 +71,35 @@ public class KeyboardView extends LinearLayout {
         mShiftKey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ToggleShift();
+                SetCasing((mCaseState != Casing.NORMAL)? Casing.NORMAL : Casing.SHIFT);
+            }
+        });
+        mShiftKey.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                SetCasing((mCaseState == Casing.NORMAL)? Casing.CAPS : Casing.NORMAL);
+                return true;
             }
         });
         mRowScrollView = findViewById(R.id.row_scroll);
         mKeyScrollView = findViewById(R.id.key_scroll);
     }
 
-    private void ToggleShift() {
-        mShifted = !mShifted;
-        ShiftKeys(mRowOne);
-        ShiftKeys(mRowTwo);
-        ShiftKeys(mRowThree);
-        ShiftKeys(mRowFour);
+    private void SetCasing (Casing casing) {
+        mCaseState = casing;
+        ShiftKeys(mRowOne, (casing != Casing.NORMAL) );
+        ShiftKeys(mRowTwo, (casing != Casing.NORMAL) );
+        ShiftKeys(mRowThree, (casing != Casing.NORMAL) );
+        ShiftKeys(mRowFour, (casing != Casing.NORMAL) );
+        mShiftKey.setSelected(mCaseState == Casing.CAPS);
     }
 
-    private void ShiftKeys (LinearLayout layout) {
-        // This is dum. Should add a more event-driven mechanism
+    private void ShiftKeys (LinearLayout layout, boolean shifted) {
+        // This is dumb. Should add a more event-driven mechanism
         for (int c = 0; c < layout.getChildCount(); c++) {
             View v = layout.getChildAt(c);
             if (v instanceof Key) {
-                ((Key)v).Shift(mShifted);
+                ((Key)v).Shift(shifted);
             }
         }
     }
