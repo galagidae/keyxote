@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.galagidae.keyxote.KeyboardContainer
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/keyboard"
+    android:layout_alignParentBottom="true"
+    android:paddingTop="0dp"
+    android:layout_marginTop="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/entry_height"
+    android:orientation="vertical"
+    android:background="#FF0b00b2"
+    android:theme="@style/KeyxoteTheme">
+
+    <LinearLayout
+        android:id="@+id/row_util"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/func_key_size"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/func_key_size"
+            android:layout_weight="0.25"
+            android:id="@+id/shift"
+            android:textSize="14dp"
+            android:text="Shift" />
+        <com.galagidae.keyxote.Key
+            android:layout_width="0dp"
+            android:layout_height="@dimen/func_key_size"
+            android:layout_weight="0.5"
+            android:textSize="@dimen/func_key_textSize"
+            app:baseChar=" "
+            app:baseLabel="space" />
+        <com.galagidae.keyxote.Key
+            android:layout_width="0dp"
+            android:layout_height="@dimen/func_key_size"
+            android:layout_weight="0.25"
+            android:textSize="@dimen/func_key_textSize"
+            app:baseChar="@string/backspace"
+            app:baseLabel="Del" />
+    </LinearLayout>
+</com.galagidae.keyxote.KeyboardContainer>

@@ -4,4 +4,5 @@
     <!-- Labels for subtype -->
     <string name="label_subtype_generic">%s</string>
     <string name="backspace">BACKSPACE</string>
+    <string name="switchboard">SWITCHBOARD</string>
 </resources>

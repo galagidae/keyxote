@@ -2,19 +2,18 @@ package com.galagidae.keyxote;
 
 import android.inputmethodservice.InputMethodService;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.view.KeyEvent;
 import android.view.View;
 
 public class KeyboardService extends InputMethodService
-            implements KeyboardView.KeyboardListener{
+            implements KeyboardContainer.KeyboardListener{
 
-    private KeyboardView mKeyboardView;
+    private KeyboardContainer mKeyboardView;
 
     @Override
     public View onCreateInputView() {
-        mKeyboardView = (KeyboardView) getLayoutInflater().inflate(
-                R.layout.view_input, null);
+        mKeyboardView = (KeyboardContainer) getLayoutInflater().inflate(
+                R.layout.board_container, null);
         mKeyboardView.Initialize(this);
         return mKeyboardView;
     }
@@ -28,12 +27,10 @@ public class KeyboardService extends InputMethodService
             mKeyboardView.ResetView();
     }
 
-    public void onSwitchBoard() {
-        this.switchToNextInputMethod(false);
-    }
-
     public void OnKey(String key) {
-        if (key == getString(R.string.backspace)) {
+        if (key == getString(R.string.switchboard))
+            this.switchToNextInputMethod(false);
+        else if (key == getString(R.string.backspace)) {
             getCurrentInputConnection().sendKeyEvent(
                     new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
             getCurrentInputConnection().sendKeyEvent(
