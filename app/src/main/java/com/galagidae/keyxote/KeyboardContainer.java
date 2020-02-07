@@ -71,7 +71,7 @@ public class KeyboardContainer extends LinearLayout {
         mShiftKey.setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                SetCasing((mCaseState == Casing.NORMAL)? Casing.CAPS : Casing.NORMAL);
+                SetCasing((mCaseState == Casing.CAPS)? Casing.NORMAL : Casing.CAPS);
                 return true;
             }
         });
