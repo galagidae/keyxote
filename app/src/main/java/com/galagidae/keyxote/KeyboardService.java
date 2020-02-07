@@ -1,6 +1,7 @@
 package com.galagidae.keyxote;
 
 import android.inputmethodservice.InputMethodService;
+import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.KeyEvent;
 import android.view.View;
@@ -9,6 +10,13 @@ public class KeyboardService extends InputMethodService
             implements KeyboardContainer.KeyboardListener{
 
     private KeyboardContainer mKeyboardView;
+    private InputMethodManager mInputManager;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mInputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+    }
 
     @Override
     public View onCreateInputView() {
@@ -29,7 +37,7 @@ public class KeyboardService extends InputMethodService
 
     public void OnKey(String key) {
         if (key == getString(R.string.switchboard))
-            this.switchToNextInputMethod(false);
+            mInputManager.showInputMethodPicker();
         else if (key == getString(R.string.backspace)) {
             getCurrentInputConnection().sendKeyEvent(
                     new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
