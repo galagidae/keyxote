@@ -15,9 +15,74 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
             <LinearLayout
-                android:id="@+id/row_one"
+                android:id="@+id/numeric"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/key_size"
+                android:orientation="horizontal">
+
+                <com.galagidae.keyxote.Key
+                    android:layout_width="@dimen/key_size"
+                    android:layout_height="@dimen/key_size"
+                    app:baseChar="1"
+                    app:shiftChar="!" />
+
+                <com.galagidae.keyxote.Key
+                    android:layout_width="@dimen/key_size"
+                    android:layout_height="@dimen/key_size"
+                    app:baseChar="2"
+                    app:shiftChar="@" />
+
+                <com.galagidae.keyxote.Key
+                    android:layout_width="@dimen/key_size"
+                    android:layout_height="@dimen/key_size"
+                    app:baseChar="3"
+                    app:shiftChar="#" />
+
+                <com.galagidae.keyxote.Key
+                    android:layout_width="@dimen/key_size"
+                    android:layout_height="@dimen/key_size"
+                    app:baseChar="4"
+                    app:shiftChar="$" />
+
+                <com.galagidae.keyxote.Key
+                    android:layout_width="@dimen/key_size"
+                    android:layout_height="@dimen/key_size"
+                    app:baseChar="5"
+                    app:shiftChar="%" />
+
+                <com.galagidae.keyxote.Key
+                    android:layout_width="@dimen/key_size"
+                    android:layout_height="@dimen/key_size"
+                    app:baseChar="6"
+                    app:shiftChar="^" />
+
+                <com.galagidae.keyxote.Key
+                    android:layout_width="@dimen/key_size"
+                    android:layout_height="@dimen/key_size"
+                    app:baseChar="7"
+                    app:shiftChar="&amp;" />
+
+                <com.galagidae.keyxote.Key
+                    android:layout_width="@dimen/key_size"
+                    android:layout_height="@dimen/key_size"
+                    app:baseChar="8"
+                    app:shiftChar="*" />
+
+                <com.galagidae.keyxote.Key
+                    android:layout_width="@dimen/key_size"
+                    android:layout_height="@dimen/key_size"
+                    app:baseChar="9"
+                    app:shiftChar="(" />
+
+                <com.galagidae.keyxote.Key
+                    android:layout_width="@dimen/key_size"
+                    android:layout_height="@dimen/key_size"
+                    app:baseChar="0"
+                    app:shiftChar=")" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/alpha1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/key_size"
                 android:orientation="horizontal">
@@ -84,7 +149,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/row_two"
+                android:id="@+id/alpha2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -145,7 +210,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/row_three"
+                android:id="@+id/alpha3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -209,72 +274,6 @@
                     android:textSize="@dimen/func_key_textSize"
                     app:baseChar="@string/switchboard"
                     app:baseLabel="Switch" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/row_four"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/key_size"
-                android:orientation="horizontal">
-
-                <com.galagidae.keyxote.Key
-                    android:layout_width="@dimen/key_size"
-                    android:layout_height="@dimen/key_size"
-                    app:baseChar="1"
-                    app:shiftChar="!" />
-
-                <com.galagidae.keyxote.Key
-                    android:layout_width="@dimen/key_size"
-                    android:layout_height="@dimen/key_size"
-                    app:baseChar="2"
-                    app:shiftChar="@" />
-
-                <com.galagidae.keyxote.Key
-                    android:layout_width="@dimen/key_size"
-                    android:layout_height="@dimen/key_size"
-                    app:baseChar="3"
-                    app:shiftChar="#" />
-
-                <com.galagidae.keyxote.Key
-                    android:layout_width="@dimen/key_size"
-                    android:layout_height="@dimen/key_size"
-                    app:baseChar="4"
-                    app:shiftChar="$" />
-
-                <com.galagidae.keyxote.Key
-                    android:layout_width="@dimen/key_size"
-                    android:layout_height="@dimen/key_size"
-                    app:baseChar="5"
-                    app:shiftChar="%" />
-
-                <com.galagidae.keyxote.Key
-                    android:layout_width="@dimen/key_size"
-                    android:layout_height="@dimen/key_size"
-                    app:baseChar="6"
-                    app:shiftChar="^" />
-
-                <com.galagidae.keyxote.Key
-                    android:layout_width="@dimen/key_size"
-                    android:layout_height="@dimen/key_size"
-                    app:baseChar="7"
-                    app:shiftChar="&amp;" />
-
-                <com.galagidae.keyxote.Key
-                    android:layout_width="@dimen/key_size"
-                    android:layout_height="@dimen/key_size"
-                    app:baseChar="8"
-                    app:shiftChar="*" />
-
-                <com.galagidae.keyxote.Key
-                    android:layout_width="@dimen/key_size"
-                    android:layout_height="@dimen/key_size"
-                    app:baseChar="9"
-                    app:shiftChar="(" />
-
-                <com.galagidae.keyxote.Key
-                    android:layout_width="@dimen/key_size"
-                    android:layout_height="@dimen/key_size"
-                    app:baseChar="0"
-                    app:shiftChar=")" />
             </LinearLayout>
         </LinearLayout>
     </HorizontalScrollView>
