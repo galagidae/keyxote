@@ -24,11 +24,14 @@ public class Key extends Button {
         if (mBaseLabel == null)
             mBaseLabel = mBaseChar;
         mShiftChar = ta.getString(R.styleable.Key_shiftChar);
-        if (mShiftChar == null)
+        if (mShiftChar == null) {
             mShiftChar = mBaseChar;
-        mShiftLabel = ta.getString(R.styleable.Key_shiftLabel);
-        if (mShiftLabel == null)
-            mShiftLabel = mShiftChar;
+            mShiftLabel = mBaseLabel;
+        } else {
+            mShiftLabel = ta.getString(R.styleable.Key_shiftLabel);
+            if (mShiftLabel == null)
+                mShiftLabel = mShiftChar;
+        }
 
         super.setText(mBaseLabel);
     }
