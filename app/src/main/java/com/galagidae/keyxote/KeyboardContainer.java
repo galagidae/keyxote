@@ -37,8 +37,13 @@ public class KeyboardContainer extends LinearLayout {
 
     private KeyboardListener mKeyboardLIstener;
     private Button mShiftKey;
+    private Button mSpaceKey;
+    private Button mQwertyKey;
+    private Button mSymbolKey;
     private LayoutInflater mInfalter;
     private QwertyBoard mQweryView;
+    private BoardSelector mSelector;
+    private SymbolsBoard mSymbolBoard;
     private KeyxoteBoard mCurrentBoard;
 
     private LinearLayout mRowUtil;
@@ -75,6 +80,15 @@ public class KeyboardContainer extends LinearLayout {
                 return true;
             }
         });
+
+        mSpaceKey = findViewById(R.id.space);
+        mSpaceKey.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                ShowSelector();
+                return true;
+            }
+        });
     }
 
     private void SetCasing (Casing casing) {
@@ -85,5 +99,50 @@ public class KeyboardContainer extends LinearLayout {
 
     public void  ResetView(){
         mCurrentBoard.ResetView();
+    }
+
+    private void ShowSelector() {
+        boolean wasReady = true;
+        if (mSelector == null)  {
+            wasReady = false;
+            mSelector = (BoardSelector) mInfalter.inflate(R.layout.selector_board, this, false);
+        }
+        removeViewAt(0);
+        mCurrentBoard = mSelector;
+        addView(mSelector, 0);
+        if (!wasReady) {
+            mQwertyKey = findViewById(R.id.qwerty_key);
+            mSymbolKey = findViewById(R.id.symbol_key);
+            mQwertyKey.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ShowQwerty();
+                }
+            });
+            mSymbolKey.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ShowSymbols();
+                }
+            });
+        }
+    }
+
+    private void ShowSymbols() {
+        if (mSymbolBoard == null)  {
+            mSymbolBoard = (SymbolsBoard) mInfalter.inflate(R.layout.symbols_board, this, false);
+            mSymbolBoard.Initialize(mOnKeyClick);
+        }
+        removeViewAt(0);
+        mCurrentBoard = mSymbolBoard;
+        mCurrentBoard.ResetView();
+        addView(mSymbolBoard, 0);
+    }
+
+    private void ShowQwerty() {
+        removeViewAt(0);
+        mCurrentBoard = mQweryView;
+        mCurrentBoard.ResetView();
+        addView(mQweryView, 0);
     }
 }

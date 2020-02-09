@@ -25,6 +25,7 @@
             android:textSize="14dp"
             android:text="Shift" />
         <com.galagidae.keyxote.Key
+            android:id="@+id/space"
             android:layout_width="0dp"
             android:layout_height="@dimen/func_key_size"
             android:layout_weight="0.5"

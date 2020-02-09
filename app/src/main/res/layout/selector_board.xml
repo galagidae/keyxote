@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.galagidae.keyxote.BoardSelector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/entry_height">
+    <Button
+        android:id="@+id/qwerty_key"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:textSize="@dimen/func_key_textSize"
+        android:text="abc" />
+    <Button
+        android:id="@+id/symbol_key"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:textSize="@dimen/func_key_textSize"
+        android:text="!@#%" />
+</com.galagidae.keyxote.BoardSelector>
