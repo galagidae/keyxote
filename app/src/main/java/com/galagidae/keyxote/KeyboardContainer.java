@@ -40,10 +40,12 @@ public class KeyboardContainer extends LinearLayout {
     private Button mSpaceKey;
     private Button mQwertyKey;
     private Button mSymbolKey;
+    private Button mFaceKey;
     private LayoutInflater mInfalter;
     private QwertyBoard mQweryView;
     private BoardSelector mSelector;
     private SymbolsBoard mSymbolBoard;
+    private FaceBoard mFaceBoard;
     private KeyxoteBoard mCurrentBoard;
 
     private LinearLayout mRowUtil;
@@ -98,7 +100,7 @@ public class KeyboardContainer extends LinearLayout {
     }
 
     public void  ResetView(){
-        mCurrentBoard.ResetView();
+        ShowQwerty();
     }
 
     private void ShowSelector() {
@@ -113,6 +115,7 @@ public class KeyboardContainer extends LinearLayout {
         if (!wasReady) {
             mQwertyKey = findViewById(R.id.qwerty_key);
             mSymbolKey = findViewById(R.id.symbol_key);
+            mFaceKey = findViewById(R.id.face_key);
             mQwertyKey.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -123,6 +126,12 @@ public class KeyboardContainer extends LinearLayout {
                 @Override
                 public void onClick(View view) {
                     ShowSymbols();
+                }
+            });
+            mFaceKey.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ShowFaces();
                 }
             });
         }
@@ -137,6 +146,17 @@ public class KeyboardContainer extends LinearLayout {
         mCurrentBoard = mSymbolBoard;
         mCurrentBoard.ResetView();
         addView(mSymbolBoard, 0);
+    }
+
+    private void ShowFaces() {
+        if (mFaceBoard == null)  {
+            mFaceBoard = (FaceBoard) mInfalter.inflate(R.layout.face_board, this, false);
+            mFaceBoard.Initialize(mOnKeyClick);
+        }
+        removeViewAt(0);
+        mCurrentBoard = mFaceBoard;
+        mCurrentBoard.ResetView();
+        addView(mFaceBoard, 0);
     }
 
     private void ShowQwerty() {

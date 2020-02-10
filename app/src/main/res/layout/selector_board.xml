@@ -8,14 +8,20 @@
         android:id="@+id/qwerty_key"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="0.5"
+        android:layout_weight="0.33"
         android:textSize="@dimen/func_key_textSize"
         android:text="abc" />
     <Button
         android:id="@+id/symbol_key"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="0.5"
+        android:layout_weight="0.33"
         android:textSize="@dimen/func_key_textSize"
         android:text="!@#%" />
+    <Button
+        android:id="@+id/face_key"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.33"
+        android:text="😃" />
 </com.galagidae.keyxote.BoardSelector>

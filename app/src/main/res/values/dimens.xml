@@ -1,7 +1,9 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="key_size">150dp</dimen>
+    <dimen name="emoji_size">200dp</dimen>
     <dimen name="entry_height">300dp</dimen>
     <dimen name="func_key_size">75dp</dimen>
     <dimen name="func_key_textSize">18dp</dimen>
+    <dimen name="emoji_key_textSize">132dp</dimen>
 </resources>
