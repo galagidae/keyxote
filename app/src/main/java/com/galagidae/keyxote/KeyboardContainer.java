@@ -145,6 +145,7 @@ public class KeyboardContainer extends LinearLayout {
         removeViewAt(0);
         mCurrentBoard = mSymbolBoard;
         mCurrentBoard.ResetView();
+        mCurrentBoard.ShiftKeys(mCaseState != Casing.NORMAL);
         addView(mSymbolBoard, 0);
     }
 
@@ -156,6 +157,7 @@ public class KeyboardContainer extends LinearLayout {
         removeViewAt(0);
         mCurrentBoard = mFaceBoard;
         mCurrentBoard.ResetView();
+        mCurrentBoard.ShiftKeys(mCaseState != Casing.NORMAL);
         addView(mFaceBoard, 0);
     }
 
@@ -163,6 +165,7 @@ public class KeyboardContainer extends LinearLayout {
         removeViewAt(0);
         mCurrentBoard = mQweryView;
         mCurrentBoard.ResetView();
+        mCurrentBoard.ShiftKeys(mCaseState != Casing.NORMAL);
         addView(mQweryView, 0);
     }
 }
