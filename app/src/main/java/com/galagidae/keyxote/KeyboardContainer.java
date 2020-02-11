@@ -1,5 +1,6 @@
 package com.galagidae.keyxote;
 
+import androidx.annotation.LayoutRes;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.Button;
@@ -42,7 +43,7 @@ public class KeyboardContainer extends LinearLayout {
     private Button mSymbolKey;
     private Button mFaceKey;
     private LayoutInflater mInfalter;
-    private QwertyBoard mQweryView;
+    private QwertyBoard mQweryBoard;
     private BoardSelector mSelector;
     private SymbolsBoard mSymbolBoard;
     private FaceBoard mFaceBoard;
@@ -59,11 +60,7 @@ public class KeyboardContainer extends LinearLayout {
     public void Initialize(KeyboardListener listener) {
         mKeyboardLIstener = listener;
 
-        // Init with qwerty
-        mQweryView = (QwertyBoard) mInfalter.inflate(R.layout.qwerty_board, this, false);
-        mCurrentBoard = mQweryView;
-        mCurrentBoard.Initialize(mOnKeyClick);
-        addView(mQweryView, 0);
+        ShowBoard(R.layout.qwerty_board);
 
         mRowUtil = findViewById(R.id.row_util);
         Utilities.SetKeyListeners(mRowUtil, mOnKeyClick);
@@ -100,7 +97,7 @@ public class KeyboardContainer extends LinearLayout {
     }
 
     public void  ResetView(){
-        ShowQwerty();
+        ShowBoard(R.layout.qwerty_board);
     }
 
     private void ShowSelector() {
@@ -119,53 +116,56 @@ public class KeyboardContainer extends LinearLayout {
             mQwertyKey.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ShowQwerty();
+                    ShowBoard(R.layout.qwerty_board);
                 }
             });
             mSymbolKey.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ShowSymbols();
+                    ShowBoard(R.layout.symbols_board);
                 }
             });
             mFaceKey.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ShowFaces();
+                    ShowBoard(R.layout.face_board);
                 }
             });
         }
     }
 
-    private void ShowSymbols() {
-        if (mSymbolBoard == null)  {
-            mSymbolBoard = (SymbolsBoard) mInfalter.inflate(R.layout.symbols_board, this, false);
-            mSymbolBoard.Initialize(mOnKeyClick);
+    private void ShowBoard (@LayoutRes int resource) {
+        boolean init = false;
+        switch (resource) {
+            case R.layout.qwerty_board:
+                if (mQweryBoard == null)  {
+                    mQweryBoard = (QwertyBoard) mInfalter.inflate(resource, this, false);
+                    init = true;
+                }
+                mCurrentBoard = mQweryBoard;
+                break;
+            case R.layout.selector_board:
+                break;
+            case R.layout.symbols_board:
+                if (mSymbolBoard == null)  {
+                    mSymbolBoard = (SymbolsBoard) mInfalter.inflate(resource, this, false);
+                    init = true;
+                }
+                mCurrentBoard = mSymbolBoard;
+                break;
+            case R.layout.face_board:
+                if (mFaceBoard == null)  {
+                    mFaceBoard = (FaceBoard) mInfalter.inflate(resource, this, false);
+                    init = true;
+                }
+                mCurrentBoard = mFaceBoard;
+                break;
         }
+        if (init)
+            mCurrentBoard.Initialize(mOnKeyClick);
         removeViewAt(0);
-        mCurrentBoard = mSymbolBoard;
         mCurrentBoard.ResetView();
         mCurrentBoard.ShiftKeys(mCaseState != Casing.NORMAL);
-        addView(mSymbolBoard, 0);
-    }
-
-    private void ShowFaces() {
-        if (mFaceBoard == null)  {
-            mFaceBoard = (FaceBoard) mInfalter.inflate(R.layout.face_board, this, false);
-            mFaceBoard.Initialize(mOnKeyClick);
-        }
-        removeViewAt(0);
-        mCurrentBoard = mFaceBoard;
-        mCurrentBoard.ResetView();
-        mCurrentBoard.ShiftKeys(mCaseState != Casing.NORMAL);
-        addView(mFaceBoard, 0);
-    }
-
-    private void ShowQwerty() {
-        removeViewAt(0);
-        mCurrentBoard = mQweryView;
-        mCurrentBoard.ResetView();
-        mCurrentBoard.ShiftKeys(mCaseState != Casing.NORMAL);
-        addView(mQweryView, 0);
+        addView((View)mCurrentBoard, 0);
     }
 }

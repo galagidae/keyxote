@@ -11,7 +11,10 @@
     android:orientation="vertical"
     android:background="#FF0b00b2"
     android:theme="@style/KeyxoteTheme">
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="" />
     <LinearLayout
         android:id="@+id/row_util"
         android:layout_width="match_parent"
