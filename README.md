@@ -10,9 +10,9 @@ Keyxote attempts to remedy this by providing a large-format keyboard that is eas
 
 This was thrown together in less than a week. Soooo
 
-* Needs a more extensive symbol entry mode
+* ~~Needs a more extensive symbol entry mode~~ Done
 * So far only tested on a Pixel 3a
-* Need to add Caps Lock
+* ~~Need to add Caps Lock~~ Done
 * Preferences need to be added for size and color control
-* No emojis 😞
+* ~~No emojis 😞~~ Some faces added 🙄
 * The author has never written Java and doesn't know anything about Android
