@@ -38,6 +38,12 @@ public class KeyboardService extends InputMethodService
     public void OnKey(String key) {
         if (key == getString(R.string.switchboard))
             mInputManager.showInputMethodPicker();
+        else if (key == getString(R.string.linefeed)) {
+            getCurrentInputConnection().sendKeyEvent(
+                    new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
+            getCurrentInputConnection().sendKeyEvent(
+                    new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
+        }
         else if (key == getString(R.string.backspace)) {
             getCurrentInputConnection().sendKeyEvent(
                     new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));

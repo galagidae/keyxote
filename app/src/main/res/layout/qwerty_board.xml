@@ -207,6 +207,13 @@
                     android:layout_height="@dimen/key_size"
                     app:baseChar="l"
                     app:shiftChar="L" />
+
+                <com.galagidae.keyxote.Key
+                    android:layout_width="@dimen/key_size"
+                    android:layout_height="@dimen/key_size"
+                    app:baseChar="@string/linefeed"
+                    app:baseLabel="←" />
+
             </LinearLayout>
 
             <LinearLayout
